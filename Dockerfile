@@ -2,11 +2,12 @@
 FROM golang:alpine3.14 as builder
 
 # 启用go module
-ENV GO111MODULE=off \
+ENV GO111MODULE=on \
     GOPROXY=https://goproxy.cn,direct
 
 WORKDIR /app
 
+# 拷贝当前目录的所有文件
 COPY . .
 
 # 指定OS等，并go build
@@ -23,11 +24,13 @@ WORKDIR /app
 
 # 将上一个阶段publish文件夹下的所有文件复制进来
 COPY --from=0 /app/helloserver .
+# 拷贝配置文件，在k8s里面可要可不要
+COPY ./config.yml .
 
 # 指定运行时环境变量
 ENV GIN_MODE=release \
-    PORT=8090
+    PORT=18088
 
-EXPOSE 8090
+EXPOSE 18088
 
 ENTRYPOINT ["./helloserver"]

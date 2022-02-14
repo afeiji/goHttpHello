@@ -4,5 +4,5 @@ go mod init helloserver
 go mod tidy -compat=1.17    #自动安装依赖包  
 go run helloserver.go  
 
-编译打包测试版本修改下面内容  
+编译打包测试版本修改 helloserver.go 文件下面内容  
 str := "Hello world ! friend01  

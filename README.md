@@ -6,3 +6,5 @@ go run helloserver.go
 
 编译打包测试版本修改 helloserver.go 文件下面内容  
 str := "Hello world ! friend01  
+
+访问请求： curl 127.0.0.1:18088/hello
